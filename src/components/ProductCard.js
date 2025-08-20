@@ -56,7 +56,7 @@ const ProductCard = ({ product, index }) => {
             className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
           >
             <ShoppingCart className="h-4 w-4" />
-            <span>Buy Now</span>
+            <span>Buy from Amazon</span>
             <ExternalLink className="h-3 w-3" />
           </motion.button>
         </div>

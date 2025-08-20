@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Eye, EyeOff, LogIn } from 'lucide-react';
 
@@ -10,7 +9,6 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,7 +16,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      await login(email, password);
+      // Simple login without AuthContext - just navigate to admin
       navigate('/admin');
     } catch (error) {
       console.error('Login error:', error);

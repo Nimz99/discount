@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase/config';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { AuthProvider } from './contexts/AuthContext';
 import { ProductProvider } from './contexts/ProductContext';
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -34,27 +33,25 @@ function App() {
 
   return (
     <ThemeProvider>
-      <AuthProvider>
-        <ProductProvider>
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-            <Header user={user} />
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route
-                  path="/admin/*"
-                  element={
-                    <ProtectedRoute user={user}>
-                      <AdminDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </main>
-          </div>
-        </ProductProvider>
-      </AuthProvider>
+      <ProductProvider>
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+          <Header user={user} />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route
+                path="/admin/*"
+                element={
+                  <ProtectedRoute user={user}>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </main>
+        </div>
+      </ProductProvider>
     </ThemeProvider>
   );
 }

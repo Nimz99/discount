@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
-import { useAuth } from '../contexts/AuthContext';
 import { Sun, Moon, ShoppingBag, LogOut, Settings } from 'lucide-react';
 
 const Header = ({ user }) => {
-  const { darkMode, toggleDarkMode } = useTheme();
-  const { logout } = useAuth();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const handleLogout = async () => {
     try {
-      await logout();
+      // Simple logout without AuthContext
+      window.location.href = '/admin/login';
     } catch (error) {
       console.error('Logout error:', error);
     }
@@ -54,11 +53,11 @@ const Header = ({ user }) => {
           <div className="flex items-center space-x-4">
             {/* Theme toggle */}
             <button
-              onClick={toggleDarkMode}
+              onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
               aria-label="Toggle theme"
             >
-              {darkMode ? (
+              {isDarkMode ? (
                 <Sun className="h-5 w-5 text-yellow-500" />
               ) : (
                 <Moon className="h-5 w-5 text-gray-600" />

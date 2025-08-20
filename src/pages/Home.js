@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import { useProducts } from '../contexts/ProductContext';
 import ProductCard from '../components/ProductCard';
 import SearchAndFilter from '../components/SearchAndFilter';
-import { ShoppingBag, Star, Users, TrendingUp } from 'lucide-react';
-
+import { ShoppingBag } from 'lucide-react';
 const Home = () => {
   const { products, loading, getProductsByCategory, searchProducts } = useProducts();
   const [searchTerm, setSearchTerm] = useState('');
@@ -32,12 +31,7 @@ const Home = () => {
     setFilteredProducts(filtered);
   }, [products, searchTerm, selectedCategory, getProductsByCategory, searchProducts]);
 
-  const stats = [
-    { icon: ShoppingBag, value: '1000+', label: 'Products' },
-    { icon: Users, value: '50K+', label: 'Happy Customers' },
-    { icon: Star, value: '4.8', label: 'Average Rating' },
-    { icon: TrendingUp, value: '95%', label: 'Satisfaction Rate' },
-  ];
+
 
   return (
     <>
@@ -76,30 +70,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <stat.icon className="h-12 w-12 text-primary-600 mx-auto mb-4" />
-                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-600 dark:text-gray-300">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Products Section */}
       <section id="products" className="py-16 bg-gray-50 dark:bg-gray-900">

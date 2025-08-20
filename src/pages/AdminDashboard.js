@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useProducts } from '../contexts/ProductContext';
-import { useAuth } from '../contexts/AuthContext';
 import { 
   Plus, 
   Edit, 
@@ -19,14 +18,13 @@ import ProductTable from '../components/ProductTable';
 
 const AdminDashboard = () => {
   const { products, loading } = useProducts();
-  const { logout } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('products');
 
   const handleLogout = async () => {
     try {
-      await logout();
-      navigate('/');
+      // Simple logout without AuthContext
+      navigate('/admin/login');
     } catch (error) {
       console.error('Logout error:', error);
     }
